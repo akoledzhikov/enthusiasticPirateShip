@@ -159,7 +159,10 @@ public class HomeController
                                                                      .value(offer.getPrice())
                                                                      .type(ContributionType.PURCHASE)
                                                                      .text("You've bought this:"
-                                                                           + offer.getTitle())
+                                                                           + offer.getTitle()
+                                                                           + " and the money goes to "
+                                                                           + offer.getTargetCharity()
+                                                                                  .getName())
                                                                      .build();
 
         UserContribution sellerContrib = new UserContributionBuilder().date(new Date())
@@ -167,7 +170,10 @@ public class HomeController
                                                                       .value(offer.getPrice())
                                                                       .type(ContributionType.SELL)
                                                                       .text("You've sold this:"
-                                                                            + offer.getTitle())
+                                                                            + offer.getTitle()
+                                                                            + " in favor of "
+                                                                            + offer.getTargetCharity()
+                                                                                    .getName())
                                                                       .build();
 
         contribRepository.save(buyerContrib);

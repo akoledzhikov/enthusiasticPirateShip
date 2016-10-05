@@ -331,21 +331,26 @@ public class DataImportListener
 
             UserContribution alex1 = new UserContributionBuilder().user(alex)
                                                                   .text("You've sold this:"
-                                                                        + offer8.getTitle())
+                                                                        + offer8.getTitle() + " in favor of "
+                                                                        + offer8.getTargetCharity().getName())
                                                                   .value(offer8.getPrice())
                                                                   .type(ContributionType.SELL)
                                                                   .date(new Date())
                                                                   .build();
             UserContribution alex2 = new UserContributionBuilder().user(alex)
                                                                   .text("You've sold this:"
-                                                                        + offer9.getTitle())
+                                                                        + offer9.getTitle() + " in favor of "
+                                                                        + offer9.getTargetCharity().getName())
                                                                   .value(offer9.getPrice())
                                                                   .type(ContributionType.SELL)
                                                                   .date(new Date())
                                                                   .build();
             UserContribution alex3 = new UserContributionBuilder().user(alex)
                                                                   .text("You've bought this:"
-                                                                        + offer10.getTitle())
+                                                                        + offer10.getTitle()
+                                                                        + " and the money goes to "
+                                                                        + offer10.getTargetCharity()
+                                                                                 .getName())
                                                                   .value(offer10.getPrice())
                                                                   .type(ContributionType.PURCHASE)
                                                                   .date(new Date())
@@ -353,19 +358,25 @@ public class DataImportListener
 
             UserContribution kalo1 = new UserContributionBuilder().user(kalo)
                                                                   .text("You've bought this:"
-                                                                        + offer8.getTitle())
+                                                                        + offer8.getTitle()
+                                                                        + " and the money goes to "
+                                                                        + offer8.getTargetCharity().getName())
                                                                   .type(ContributionType.PURCHASE)
                                                                   .date(new Date())
                                                                   .build();
             UserContribution kalo2 = new UserContributionBuilder().user(kalo)
                                                                   .text("You've bought this:"
-                                                                        + offer9.getTitle())
+                                                                        + offer9.getTitle()
+                                                                        + " and the money goes to "
+                                                                        + offer9.getTargetCharity().getName())
                                                                   .type(ContributionType.PURCHASE)
                                                                   .date(new Date())
                                                                   .build();
             UserContribution kalo3 = new UserContributionBuilder().user(kalo)
                                                                   .text("You've sold this:"
-                                                                        + offer10.getTitle())
+                                                                        + offer10.getTitle()
+                                                                        + " in favor of "
+                                                                        + offer9.getTargetCharity().getName())
                                                                   .type(ContributionType.SELL)
                                                                   .date(new Date())
                                                                   .build();
