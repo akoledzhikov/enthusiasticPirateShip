@@ -84,7 +84,7 @@ public class DataImportListener
                                                    .name("The Bulgarian Red Cross")
                                                    .linkToOfficialPage("http://en.redcross.bg/")
                                                    .mail("bulgaria@redcross.gov")
-                                                   .profilePicture("redCross.jpg")
+                                                   .profilePicture("http://localhost:8080/pirate/resources/redCross.jpg")
                                                    .build();
 
             Charity animalRescue = new CharityBuilder().category(CharityCategory.ANIMALS_AND_WILDLIFE)
@@ -93,7 +93,7 @@ public class DataImportListener
                                                        .name("Animal Rescue Sofia")
                                                        .linkToOfficialPage("http://arsofia.com/")
                                                        .mail("animalrescue@gmail.com")
-                                                       .profilePicture("animalRescue.jpg")
+                                                       .profilePicture("http://localhost:8080/pirate/resources/animalRescue.jpg")
                                                        .build();
 
             Charity amnestyInternational = new CharityBuilder().category(CharityCategory.ANIMALS_AND_WILDLIFE)
@@ -102,7 +102,7 @@ public class DataImportListener
                                                                .name("Amnesty International")
                                                                .linkToOfficialPage("https://www.amnesty.org/en/countries/europe-and-central-asia/bulgaria/")
                                                                .mail("amnesty@gmail.com")
-                                                               .profilePicture("amnesty.png")
+                                                               .profilePicture("http://localhost:8080/pirate/resources/amnesty.png")
                                                                .build();
 
             charityRepo.save(redCross);
@@ -110,7 +110,7 @@ public class DataImportListener
             charityRepo.save(animalRescue);
 
             ArrayList<String> offer1pics = new ArrayList<>();
-            offer1pics.add("offer1.jpg");
+            offer1pics.add("http://localhost:8080/pirate/resources/offer1.jpg");
             Offer offer1 = new OfferBuilder().category("Electronics")
                                              .title("Very nice flat screen TV, really cheap!")
                                              .description("This was my favourite TV, but now I have a new one and want to sell this one!")
@@ -121,7 +121,7 @@ public class DataImportListener
                                              .build();
 
             ArrayList<String> offer2pics = new ArrayList<>();
-            offer2pics.add("offer2.jpg");
+            offer2pics.add("http://localhost:8080/pirate/resources/offer2.jpg");
             Offer offer2 = new OfferBuilder().category("Electronics")
                                              .title("Smart TV for sale")
                                              .description("This was my favourite TV, but now I have a new one and want to sell this one!")
@@ -132,7 +132,7 @@ public class DataImportListener
                                              .build();
 
             ArrayList<String> offer3pics = new ArrayList<>();
-            offer3pics.add("offer3.jpg");
+            offer3pics.add("http://localhost:8080/pirate/resources/offer3.jpg");
             Offer offer3 = new OfferBuilder().category("Electronics")
                                              .title("Generic Smartphone")
                                              .description("Some smartphone. Can talk, read, write and sing.")
@@ -143,7 +143,7 @@ public class DataImportListener
                                              .build();
 
             ArrayList<String> offer4pics = new ArrayList<>();
-            offer4pics.add("offer4.jpg");
+            offer4pics.add("http://localhost:8080/pirate/resources/offer4.jpg");
             Offer offer4 = new OfferBuilder().category("Books")
                                              .title("War and Peace")
                                              .description("Absolute classic, everyone should read it!")
@@ -153,7 +153,7 @@ public class DataImportListener
                                              .pictures(offer4pics)
                                              .build();
             ArrayList<String> offer5pics = new ArrayList<>();
-            offer5pics.add("offer5.jpg");
+            offer5pics.add("http://localhost:8080/pirate/resources/offer5.jpg");
             Offer offer5 = new OfferBuilder().category("Books")
                                              .title("Fifty shades of gray")
                                              .description("I just want to get rid of it...")
@@ -163,7 +163,7 @@ public class DataImportListener
                                              .pictures(offer5pics)
                                              .build();
             ArrayList<String> offer6pics = new ArrayList<>();
-            offer6pics.add("offer6.jpg");
+            offer6pics.add("http://localhost:8080/pirate/resources/offer6.jpg");
             Offer offer6 = new OfferBuilder().category("Clothes")
                                              .title("Black trenchcoat, good-as-new")
                                              .description("I never wore it naked, I swear")
@@ -173,7 +173,7 @@ public class DataImportListener
                                              .pictures(offer6pics)
                                              .build();
             ArrayList<String> offer7pics = new ArrayList<>();
-            offer7pics.add("offer7.jpg");
+            offer7pics.add("http://localhost:8080/pirate/resources/offer7.jpg");
             Offer offer7 = new OfferBuilder().category("Clothes")
                                              .title("Full suit, worn only once")
                                              .description("I wore this on the EOA summit and won - it brings good luck!")
@@ -186,7 +186,7 @@ public class DataImportListener
             // inactive offers
             // kalo benefits from this as a buyer
             ArrayList<String> offer8pics = new ArrayList<>();
-            offer8pics.add("offer8.jpg");
+            offer8pics.add("http://localhost:8080/pirate/resources/offer8.jpg");
             Offer offer8 = new OfferBuilder().category("Electronics")
                                              .title("Nokia 3310, best phone ever")
                                              .description("I wore this on the EOA summit and won - it brings good luck!")
@@ -198,7 +198,7 @@ public class DataImportListener
 
             // kalo benefits from this as a buyer
             ArrayList<String> offer9pics = new ArrayList<>();
-            offer9pics.add("offer9.jpg");
+            offer9pics.add("http://localhost:8080/pirate/resources/offer9.jpg");
             Offer offer9 = new OfferBuilder().category("Electronics")
                                              .title("Toshiba Satellite A665, still in warranty")
                                              .description("I brought this on the EOA summit and won - it brings good luck!")
@@ -210,7 +210,7 @@ public class DataImportListener
 
             // kalo benefits from this as a seller
             ArrayList<String> offer10pics = new ArrayList<>();
-            offer10pics.add("offer10.jpg");
+            offer10pics.add("http://localhost:8080/pirate/resources/offer10.jpg");
             Offer offer10 = new OfferBuilder().category("Books")
                                               .title("Vegan Cooking")
                                               .description("I'm not a vegan, therefore I don't need this.")
@@ -232,6 +232,9 @@ public class DataImportListener
             offerRepo.save(offer10);
 
             ArrayList<String> event1Gallery = new ArrayList<>();
+            event1Gallery.add("http://localhost:8080/pirate/resources/donation/image1.jpg");
+            event1Gallery.add("http://localhost:8080/pirate/resources/donation/image2.jpg");
+            event1Gallery.add("http://localhost:8080/pirate/resources/donation/image3.jpg");
             CharityEvent event1 = new CharityEventBuilder().charity(redCross)
                                                            .description("Any old clothes you no longer wear are appreciated!")
                                                            .endTime(new Date(System.currentTimeMillis() - 32 * 60 * 1000))
@@ -401,21 +404,21 @@ public class DataImportListener
                                                         .awardedBy("Bulgarian Red Cross")
                                                         .description("Thank you badge")
                                                         .text("")
-                                                        .picture("thankYouBadge.jpg")
+                                                        .picture("http://localhost:8080/pirate/resources/thankYouBadge.jpg")
                                                         .build();
 
             UserReward reward2 = new UserRewardBuilder().user(kalo)
                                                         .awardedBy("Bulgarian Red Cross")
                                                         .description("Event invitation - Friends of BRC meetup.")
                                                         .text("")
-                                                        .picture("friendsMeetup.png")
+                                                        .picture("http://localhost:8080/pirate/resources/friendsMeetup.png")
                                                         .build();
 
             UserReward reward3 = new UserRewardBuilder().user(kalo)
                                                         .awardedBy("Technopolis")
                                                         .description("Digital photo frame")
                                                         .text("")
-                                                        .picture("photoFrame.jpg")
+                                                        .picture("http://localhost:8080/pirate/resources/photoFrame.jpg")
                                                         .build();
 
             rewardRepo.save(reward1);
