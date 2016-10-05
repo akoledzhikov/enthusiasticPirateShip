@@ -17,6 +17,7 @@ public class CharityPost
     	id = post.getId();
     	title = post.getTitle();
     	text = post.getText();
+    	datePosted = post.getDatePosted();
     }
     
     public long getId()
@@ -43,25 +44,25 @@ public class CharityPost
     }
 
 
-    public String getText()
+    public String getContent()
     {
         return text;
     }
 
 
-    public void setText(String text)
+    public void setContent(String text)
     {
         this.text = text;
     }
 
 
-    public Date getDatePosted()
+    public Date getDate()
     {
         return datePosted;
     }
 
 
-    public void setDatePosted(Date datePosted)
+    public void setDate(Date datePosted)
     {
         this.datePosted = datePosted;
     }

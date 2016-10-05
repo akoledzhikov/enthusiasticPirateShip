@@ -111,8 +111,9 @@ public class DataImportListener
                                          .favouriteCharities(kalosFavouriteCharities)
                                          .build();
 
-            userRepo.save(alex);
             userRepo.save(kalo);
+            userRepo.save(alex);
+   
 
             ArrayList<String> offer1pics = new ArrayList<>();
             offer1pics.add("http://localhost:8080/pirate/resources/offer1.jpg");

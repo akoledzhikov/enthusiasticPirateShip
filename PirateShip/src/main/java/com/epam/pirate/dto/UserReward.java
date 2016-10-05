@@ -43,25 +43,25 @@ public class UserReward
     }
 
 
-    public String getText()
+    public String getDescription()
     {
         return text;
     }
 
 
-    public void setText(String text)
+    public void setDescription(String text)
     {
         this.text = text;
     }
 
 
-    public String getPicture()
+    public String getImage()
     {
         return picture;
     }
 
 
-    public void setPicture(String picture)
+    public void setImage(String picture)
     {
         this.picture = picture;
     }

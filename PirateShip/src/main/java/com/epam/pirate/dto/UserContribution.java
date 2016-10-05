@@ -8,22 +8,22 @@ public class UserContribution
 {
     private long id;
 
-    private String picture;
+    private String image;
 
     private Date date;
 
     private double value;
 
-    private String text;
+    private String description;
 
 
     public UserContribution(com.epam.pirate.model.UserContribution contribution)
     {
         this.id = contribution.getId();
-        this.picture = contribution.getType().getIconLocation();
+        this.image = contribution.getType().getIconLocation();
         this.date = contribution.getDate();
         this.value = contribution.getValue();
-        this.text = contribution.getText();
+        this.description = contribution.getText();
     }
 
 
@@ -39,15 +39,15 @@ public class UserContribution
     }
 
 
-    public String getPicture()
+    public String getImage()
     {
-        return picture;
+        return image;
     }
 
 
-    public void setPicture(String picture)
+    public void setImage(String picture)
     {
-        this.picture = picture;
+        this.image = picture;
     }
 
 
@@ -63,15 +63,15 @@ public class UserContribution
     }
 
 
-    public String getText()
+    public String getDescription()
     {
-        return text;
+        return description;
     }
 
 
-    public void setText(String text)
+    public void setDescription(String text)
     {
-        this.text = text;
+        this.description = text;
     }
 
 

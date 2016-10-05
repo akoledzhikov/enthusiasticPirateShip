@@ -23,19 +23,26 @@ public class CharityEvent
 
     private ArrayList<String> pictures = new ArrayList<>();
 
-    public CharityEvent(com.epam.pirate.model.CharityEvent event){
-    	id = event.getId();
-    	title = event.getTitle();
-    	description = event.getDescription();
-    	startTime = event.getStartTime();
-    	endTime = event.getEndTime();
-    	location = event.getLocation();
-    	pictures = event.getPictures();
-    	
-    	for (com.epam.pirate.model.CharityPost post : event.getPosts()) {
-			posts.add(new CharityPost(post));
-		}
+    private long owner;
+
+
+    public CharityEvent(com.epam.pirate.model.CharityEvent event)
+    {
+        id = event.getId();
+        title = event.getTitle();
+        description = event.getDescription();
+        startTime = event.getStartTime();
+        endTime = event.getEndTime();
+        location = event.getLocation();
+        pictures = event.getPictures();
+        owner = event.getCharity().getId();
+
+        for (com.epam.pirate.model.CharityPost post : event.getPosts())
+        {
+            posts.add(new CharityPost(post));
+        }
     }
+
 
     public long getId()
     {
@@ -121,14 +128,27 @@ public class CharityEvent
     }
 
 
-    public ArrayList<String> getPictures()
+    public ArrayList<String> getImages()
     {
         return pictures;
     }
 
 
-    public void setPictures(ArrayList<String> pictures)
+    public void setImages(ArrayList<String> pictures)
     {
         this.pictures = pictures;
     }
+
+
+    public long getOwner()
+    {
+        return owner;
+    }
+
+
+    public void setOwner(long owner)
+    {
+        this.owner = owner;
+    }
+
 }

@@ -17,23 +17,23 @@ public class SecurityUtils {
 	Random rnd = new Random();
 	
 	public User getLoggedInUser(final HttpServletRequest request) throws Exception{
-//		return userRepository.findOne(Long.valueOf(1));
-		final String token = request.getHeader("token");
-		String[] parts = parseToken(token);
-		if(parts == null){
-			throw new Exception("invalid token");
-		}
-		User user = null;
-		try{
-			user = userRepository.findByMailAndPassword(parts[0], parts[1]);
-			if(user == null){
-				throw new Exception("invalid credentials");
-			}
-			return user;
-		}
-		catch(Exception ex){
-			throw new Exception("invalid credentials");
-		}
+		return userRepository.findOne(Long.valueOf(1));
+//		final String token = request.getHeader("token");
+//		String[] parts = parseToken(token);
+//		if(parts == null){
+//			throw new Exception("invalid token");
+//		}
+//		User user = null;
+//		try{
+//			user = userRepository.findByMailAndPassword(parts[0], parts[1]);
+//			if(user == null){
+//				throw new Exception("invalid credentials");
+//			}
+//			return user;
+//		}
+//		catch(Exception ex){
+//			throw new Exception("invalid credentials");
+//		}
 	}
 	
 	public String loginUser(final String username, final String password) throws Exception{

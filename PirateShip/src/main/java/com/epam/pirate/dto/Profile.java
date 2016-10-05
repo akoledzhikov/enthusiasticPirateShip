@@ -40,27 +40,27 @@ public class Profile {
 		this.favouriteCharities = favouriteCharities;
 	}
 
-	public List<Offer> getOffers() {
+	public List<Offer> getMyOffers() {
 		return offers;
 	}
 
-	public void setOffers(List<Offer> offers) {
+	public void setMyOffers(List<Offer> offers) {
 		this.offers = offers;
 	}
 
-	public List<UserContribution> getContributions() {
-		return contributions;
+	public List<UserContribution> getHistory() {
+		return history;
 	}
 
-	public void setContributions(List<UserContribution> contributions) {
-		this.contributions = contributions;
+	public void setHistory(List<UserContribution> history) {
+		this.history = history;
 	}
 
-	public List<UserReward> getRewards() {
+	public List<UserReward> getMyRewards() {
 		return rewards;
 	}
 
-	public void setRewards(List<UserReward> rewards) {
+	public void setMyRewards(List<UserReward> rewards) {
 		this.rewards = rewards;
 	}
 
@@ -71,7 +71,7 @@ public class Profile {
     
     private List<Offer> offers = new ArrayList<>();
 
-    private List<UserContribution> contributions = new ArrayList<>();
+    private List<UserContribution> history = new ArrayList<>();
 
     private List<UserReward> rewards = new ArrayList<>();
     
@@ -87,7 +87,7 @@ public class Profile {
     	
     	//contributions
     	for (com.epam.pirate.model.UserContribution userContribution : user.getContributions()) {
-    		contributions.add(new UserContribution(userContribution));
+    	    history.add(new UserContribution(userContribution));
 		}
     	
     	//rewards
