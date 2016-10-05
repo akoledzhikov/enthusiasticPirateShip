@@ -1,6 +1,8 @@
 package com.epam.pirate.model;
 
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +32,8 @@ public class UserContribution
     private Offer offer;
     @ManyToOne
     private CharityEvent event;
+    
+    private Date date;
 
     // in case of donations only!
     private double money;
@@ -116,5 +120,17 @@ public class UserContribution
     public void setMoney(double money)
     {
         this.money = money;
+    }
+
+
+    public Date getDate()
+    {
+        return date;
+    }
+
+
+    public void setDate(Date date)
+    {
+        this.date = date;
     }
 }
