@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,6 +25,7 @@ import com.epam.pirate.dao.CharityRepository;
 import com.epam.pirate.dao.OfferRepository;
 import com.epam.pirate.dao.UserContributionRepository;
 import com.epam.pirate.dao.UserRepository;
+import com.epam.pirate.dao.UserRewardRepository;
 import com.epam.pirate.dto.Charity;
 import com.epam.pirate.dto.CharityEvent;
 import com.epam.pirate.dto.Offer;
@@ -35,6 +35,8 @@ import com.epam.pirate.model.ContributionType;
 import com.epam.pirate.model.User;
 import com.epam.pirate.model.UserContribution;
 import com.epam.pirate.model.UserContributionBuilder;
+import com.epam.pirate.model.UserReward;
+import com.epam.pirate.model.UserRewardBuilder;
 import com.epam.pirate.security.SecurityUtils;
 import com.epam.pirate.security.UserCredentials;
 
@@ -63,6 +65,8 @@ public class HomeController
     UserContributionRepository contribRepository;
     @Autowired
     CharityGoalRepository goalRepository;
+    @Autowired
+    UserRewardRepository rewardRepo;
 
 
     /**
@@ -173,46 +177,59 @@ public class HomeController
                                                                             + offer.getTitle()
                                                                             + " in favor of "
                                                                             + offer.getTargetCharity()
-                                                                                    .getName())
+                                                                                   .getName())
                                                                       .build();
 
         contribRepository.save(buyerContrib);
         contribRepository.save(sellerContrib);
-        
-        
+
         double moneyLeft = offer.getPrice();
-        while (moneyLeft > 0) {
+        while (moneyLeft > 0)
+        {
             boolean goalUpdated = false;
             List<CharityGoal> goals = targetCharity.getGoals();
-            for (CharityGoal goal : goals) {
-                if (goal.getCurrentAmountOfMoney() < goal.getTargetAmountOfMoney()) {
+            for (CharityGoal goal : goals)
+            {
+                if (goal.getCurrentAmountOfMoney() < goal.getTargetAmountOfMoney())
+                {
                     double margin = goal.getTargetAmountOfMoney() - goal.getCurrentAmountOfMoney();
-                    if (margin >= moneyLeft) {
+                    if (margin >= moneyLeft)
+                    {
                         goal.setCurrentAmountOfMoney(goal.getCurrentAmountOfMoney() + moneyLeft);
                         moneyLeft = 0;
                     }
-                    else {
+                    else
+                    {
                         goal.setCurrentAmountOfMoney(goal.getTargetAmountOfMoney());
-                        moneyLeft-=margin;
+                        moneyLeft -= margin;
                     }
                 }
-                
+
                 goalUpdated = true;
                 goalRepository.save(goal);
             }
-            
-            if (!goalUpdated) {
+
+            if (!goalUpdated)
+            {
                 break;
             } // well, this charity is fully funded for the current month.
         }
 
-//        List<CharityGoal> goals = targetCharity.getGoals();
-//        Random r = new Random();
-//        int fairRand = r.nextInt(goals.size());
-//        CharityGoal goal = goals.get(fairRand);
-//        goal.setCurrentAmountOfMoney(goal.getCurrentAmountOfMoney() + offer.getPrice());
-//        goalRepository.save(goal);
+        // List<CharityGoal> goals = targetCharity.getGoals();
+        // Random r = new Random();
+        // int fairRand = r.nextInt(goals.size());
+        // CharityGoal goal = goals.get(fairRand);
+        // goal.setCurrentAmountOfMoney(goal.getCurrentAmountOfMoney() + offer.getPrice());
+        // goalRepository.save(goal);
         offerRepository.delete(offer);
+
+        UserReward reward = new UserRewardBuilder().awardedBy("Cupcakes and Marshmellows")
+                                                   .user(buyer)
+                                                   .description("Free cupcake!")
+                                                   .picture("http://localhost:8080/pirate/resources/cupcake.png")
+                                                   .text("Because you've helped Bulgarian Red Cross to fully fund one of their goals, you get a voucher for a free cupcake!")
+                                                   .build();
+        rewardRepo.save(reward);
 
         return new Offer(offer);
     }
