@@ -287,7 +287,7 @@ public class DataImportListener
 
             CharityGoal goal2 = new CharityGoalBuilder().charity(redCross)
                                                         .description("HIV prevention campaign")
-                                                        .currentAmountOfMoney(1000)
+                                                        .currentAmountOfMoney(1200)
                                                         .targetAmountOfMoney(1250)
                                                         .build();
 
@@ -297,8 +297,8 @@ public class DataImportListener
                                                         .targetAmountOfMoney(15000)
                                                         .build();
 
-            goalRepo.save(goal1);
             goalRepo.save(goal2);
+            goalRepo.save(goal1);
             goalRepo.save(goal3);
 
             CharityPost post1 = new CharityPostBuilder().charity(redCross)

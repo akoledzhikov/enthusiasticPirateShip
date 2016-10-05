@@ -178,13 +178,40 @@ public class HomeController
 
         contribRepository.save(buyerContrib);
         contribRepository.save(sellerContrib);
+        
+        
+        double moneyLeft = offer.getPrice();
+        while (moneyLeft > 0) {
+            boolean goalUpdated = false;
+            List<CharityGoal> goals = targetCharity.getGoals();
+            for (CharityGoal goal : goals) {
+                if (goal.getCurrentAmountOfMoney() < goal.getTargetAmountOfMoney()) {
+                    double margin = goal.getTargetAmountOfMoney() - goal.getCurrentAmountOfMoney();
+                    if (margin >= moneyLeft) {
+                        goal.setCurrentAmountOfMoney(goal.getCurrentAmountOfMoney() + moneyLeft);
+                        moneyLeft = 0;
+                    }
+                    else {
+                        goal.setCurrentAmountOfMoney(goal.getTargetAmountOfMoney());
+                        moneyLeft-=margin;
+                    }
+                }
+                
+                goalUpdated = true;
+                goalRepository.save(goal);
+            }
+            
+            if (!goalUpdated) {
+                break;
+            } // well, this charity is fully funded for the current month.
+        }
 
-        List<CharityGoal> goals = targetCharity.getGoals();
-        Random r = new Random();
-        int fairRand = r.nextInt(goals.size());
-        CharityGoal goal = goals.get(fairRand);
-        goal.setCurrentAmountOfMoney(goal.getCurrentAmountOfMoney() + offer.getPrice());
-        goalRepository.save(goal);
+//        List<CharityGoal> goals = targetCharity.getGoals();
+//        Random r = new Random();
+//        int fairRand = r.nextInt(goals.size());
+//        CharityGoal goal = goals.get(fairRand);
+//        goal.setCurrentAmountOfMoney(goal.getCurrentAmountOfMoney() + offer.getPrice());
+//        goalRepository.save(goal);
         offerRepository.delete(offer);
 
         return new Offer(offer);
