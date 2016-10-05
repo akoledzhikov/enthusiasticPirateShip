@@ -2,9 +2,11 @@ package com.epam.pirate.model;
 
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import net.karneim.pojobuilder.GeneratePojoBuilder;
@@ -19,7 +21,8 @@ public class CharityGoal
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private CharityCategory charity;
+    @ManyToOne(fetch=FetchType.EAGER)
+    private Charity charity;
 
     private String description;
 
@@ -40,13 +43,13 @@ public class CharityGoal
     }
 
 
-    public CharityCategory getCharity()
+    public Charity getCharity()
     {
         return charity;
     }
 
 
-    public void setCharity(CharityCategory charity)
+    public void setCharity(Charity charity)
     {
         this.charity = charity;
     }

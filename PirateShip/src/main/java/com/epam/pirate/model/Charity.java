@@ -35,13 +35,13 @@ public class Charity
 
     private String linkToOfficialPage;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="charity")
     private List<CharityEvent> events;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="charity")
     private List<CharityGoal> goals;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="charity")
     private List<CharityPost> posts;
 
 

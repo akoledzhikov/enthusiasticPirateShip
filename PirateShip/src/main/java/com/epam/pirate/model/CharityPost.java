@@ -4,9 +4,11 @@ package com.epam.pirate.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import net.karneim.pojobuilder.GeneratePojoBuilder;
@@ -21,8 +23,9 @@ public class CharityPost
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne(fetch = FetchType.EAGER)
     private Charity charity;
-
+    @ManyToOne(fetch = FetchType.EAGER)
     private CharityEvent event;
 
     private String title;

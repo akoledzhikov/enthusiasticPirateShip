@@ -31,7 +31,7 @@ public class Offer
 
     private String description;
 
-    private List<Picture> pictures;
+    private List<String> pictures;
 
     private double price;
 
@@ -108,13 +108,13 @@ public class Offer
     }
 
 
-    public List<Picture> getPictures()
+    public List<String> getPictures()
     {
         return pictures;
     }
 
 
-    public void setPictures(List<Picture> pictures)
+    public void setPictures(List<String> pictures)
     {
         this.pictures = pictures;
     }

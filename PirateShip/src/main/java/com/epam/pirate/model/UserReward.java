@@ -23,7 +23,7 @@ public class UserReward
     
     private String text;
     
-    private Picture picture;
+    private String picture;
     
     private String awardedBy;
 
@@ -67,12 +67,12 @@ public class UserReward
         this.text = text;
     }
 
-    public Picture getPicture()
+    public String getPicture()
     {
         return picture;
     }
 
-    public void setPicture(Picture picture)
+    public void setPicture(String picture)
     {
         this.picture = picture;
     }

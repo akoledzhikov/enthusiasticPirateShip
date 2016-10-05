@@ -25,7 +25,7 @@ public class CharityEvent
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     private Charity charity;
 
     private String title;
@@ -38,11 +38,10 @@ public class CharityEvent
 
     private String location;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="event")
     private List<CharityPost> posts;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Picture> pictures;
+    private List<String> pictures;
 
 
     public long getId()
@@ -141,13 +140,13 @@ public class CharityEvent
     }
 
 
-    public List<Picture> getPictures()
+    public List<String> getPictures()
     {
         return pictures;
     }
 
 
-    public void setPictures(List<Picture> pictures)
+    public void setPictures(List<String> pictures)
     {
         this.pictures = pictures;
     }
