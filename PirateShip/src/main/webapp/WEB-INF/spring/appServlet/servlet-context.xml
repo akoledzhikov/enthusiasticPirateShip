@@ -21,12 +21,6 @@
 	<context:annotation-config />
 	<context:component-scan base-package="com.epam.pirate" />
 	<bean id="securityUtils" class="com.epam.pirate.security.SecurityUtils"/>
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
-
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="org.h2.Driver"></property>
