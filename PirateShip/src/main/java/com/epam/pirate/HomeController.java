@@ -8,10 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.epam.pirate.model.User;
 import com.epam.pirate.security.SecurityUtils;
@@ -32,7 +33,8 @@ public class HomeController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model, @RequestHeader("token") String token) throws Exception {
+	@ResponseBody
+	public String home(Locale locale, @RequestHeader("token") String token) throws Exception {
 		User currentUser = securityUtils.getLoggedInUser(token);
 		logger.info("Welcome home! The client locale is {}.", locale);
 		logger.info("The current user is {}.", currentUser.getId());
@@ -42,15 +44,23 @@ public class HomeController {
 		
 		String formattedDate = dateFormat.format(date);
 		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+		return "Welcome " + currentUser.getMail() + " now is " + formattedDate;
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestHeader("username") String username, @RequestHeader("password") String password) throws Exception{
+	@ResponseBody
+	public String login(@RequestParam("username") String username, @RequestParam("password") String password) throws Exception{
 		return securityUtils.loginUser(username, password);
 		
 	}
-	
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@ResponseBody
+	public String login() throws Exception{
+		String form = "<form method=\"post\">username: <input type=\"text\" name=\"username\"><br/>password:<input type=\"text\" name=\"password\"><br/><input type=\"submit\" value=\"login\"> </form>";
+		
+		return form;
+		
+	}
+
 }
