@@ -15,7 +15,7 @@ import net.karneim.pojobuilder.GeneratePojoBuilder;
 
 @Entity
 @Table(name = "UserContributions")
-@GeneratePojoBuilder(withSetterNamePattern="*")
+@GeneratePojoBuilder(withSetterNamePattern = "*")
 public class UserContribution
 {
     @Id
@@ -26,17 +26,12 @@ public class UserContribution
     private User user;
 
     private ContributionType type;
-    @ManyToOne
-    private Charity targetCharity;
-    @ManyToOne
-    private Offer offer;
-    @ManyToOne
-    private CharityEvent event;
-    
+
     private Date date;
 
-    // in case of donations only!
-    private double money;
+    private double value;
+
+    private String text;
 
 
     public long getId()
@@ -75,51 +70,27 @@ public class UserContribution
     }
 
 
-    public Charity getTargetCharity()
+    public double getValue()
     {
-        return targetCharity;
+        return value;
     }
 
 
-    public void setTargetCharity(Charity targetCharity)
+    public void setValue(double value)
     {
-        this.targetCharity = targetCharity;
+        this.value = value;
     }
 
 
-    public Offer getOffer()
+    public String getText()
     {
-        return offer;
+        return text;
     }
 
 
-    public void setOffer(Offer offer)
+    public void setText(String text)
     {
-        this.offer = offer;
-    }
-
-
-    public CharityEvent getEvent()
-    {
-        return event;
-    }
-
-
-    public void setEvent(CharityEvent event)
-    {
-        this.event = event;
-    }
-
-
-    public double getMoney()
-    {
-        return money;
-    }
-
-
-    public void setMoney(double money)
-    {
-        this.money = money;
+        this.text = text;
     }
 
 

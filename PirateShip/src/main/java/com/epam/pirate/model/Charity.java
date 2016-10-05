@@ -30,10 +30,10 @@ public class Charity
     private String mail;
 
     private String password;
-    
+
     private String name;
 
-    @Column(length=4096)
+    @Column(length = 4096)
     private String description;
 
     private String contactPhone;
@@ -42,17 +42,19 @@ public class Charity
 
     private String linkToOfficialPage;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="charity")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "charity")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<CharityEvent> events;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="charity")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "charity")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<CharityGoal> goals;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="charity")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "charity")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<CharityPost> posts;
+
+    private String profilePicture;
 
 
     public long getId()
@@ -184,6 +186,18 @@ public class Charity
     public void setName(String name)
     {
         this.name = name;
+    }
+
+
+    public String getProfilePicture()
+    {
+        return profilePicture;
+    }
+
+
+    public void setProfilePicture(String profilePicture)
+    {
+        this.profilePicture = profilePicture;
     }
 
 }

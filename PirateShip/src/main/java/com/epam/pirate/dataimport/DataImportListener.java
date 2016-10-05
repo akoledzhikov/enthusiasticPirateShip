@@ -84,6 +84,7 @@ public class DataImportListener
                                                    .name("The Bulgarian Red Cross")
                                                    .linkToOfficialPage("http://en.redcross.bg/")
                                                    .mail("bulgaria@redcross.gov")
+                                                   .profilePicture("redCross.jpg")
                                                    .build();
 
             Charity animalRescue = new CharityBuilder().category(CharityCategory.ANIMALS_AND_WILDLIFE)
@@ -92,6 +93,7 @@ public class DataImportListener
                                                        .name("Animal Rescue Sofia")
                                                        .linkToOfficialPage("http://arsofia.com/")
                                                        .mail("animalrescue@gmail.com")
+                                                       .profilePicture("animalRescue.jpg")
                                                        .build();
 
             Charity amnestyInternational = new CharityBuilder().category(CharityCategory.ANIMALS_AND_WILDLIFE)
@@ -100,6 +102,7 @@ public class DataImportListener
                                                                .name("Amnesty International")
                                                                .linkToOfficialPage("https://www.amnesty.org/en/countries/europe-and-central-asia/bulgaria/")
                                                                .mail("amnesty@gmail.com")
+                                                               .profilePicture("amnesty.png")
                                                                .build();
 
             charityRepo.save(redCross);
@@ -211,8 +214,8 @@ public class DataImportListener
             ArrayList<String> offer10pics = new ArrayList<>();
             offer10pics.add("offer10.jpg");
             Offer offer10 = new OfferBuilder().category("Books")
-                                              .title("1001 easy recepies")
-                                              .description("I do not cook and do not need this anymore.")
+                                              .title("Vegan Cooking")
+                                              .description("I'm not a vegan, therefore I don't need this.")
                                               .price(20)
                                               .targetCharity(redCross)
                                               .user(kalo)
@@ -231,12 +234,14 @@ public class DataImportListener
             offerRepo.save(offer9);
             offerRepo.save(offer10);
 
+            ArrayList<String> event1Gallery = new ArrayList<>();
             CharityEvent event1 = new CharityEventBuilder().charity(redCross)
                                                            .description("Any old clothes you no longer wear are appreciated!")
                                                            .endTime(new Date(System.currentTimeMillis() - 32 * 60 * 1000))
                                                            .startTime(new Date(System.currentTimeMillis() - 36 * 60 * 1000))
                                                            .location("123,123")
                                                            .title("Clothes donating campaign")
+                                                           .pictures(event1Gallery)
                                                            .build();
 
             CharityEvent event2 = new CharityEventBuilder().charity(redCross)
@@ -320,52 +325,67 @@ public class DataImportListener
             postRepo.save(post4);
 
             UserContribution alex1 = new UserContributionBuilder().user(alex)
-                                                                  .offer(offer8)
+                                                                  .text("You've sold this:"
+                                                                        + offer8.getTitle())
+                                                                  .value(offer8.getPrice())
                                                                   .type(ContributionType.SELL)
                                                                   .date(new Date())
                                                                   .build();
             UserContribution alex2 = new UserContributionBuilder().user(alex)
-                                                                  .offer(offer9)
+                                                                  .text("You've sold this:"
+                                                                        + offer9.getTitle())
+                                                                  .value(offer9.getPrice())
                                                                   .type(ContributionType.SELL)
                                                                   .date(new Date())
                                                                   .build();
             UserContribution alex3 = new UserContributionBuilder().user(alex)
-                                                                  .offer(offer10)
+                                                                  .text("You've bought this:"
+                                                                        + offer10.getTitle())
+                                                                  .value(offer10.getPrice())
                                                                   .type(ContributionType.PURCHASE)
                                                                   .date(new Date())
                                                                   .build();
 
             UserContribution kalo1 = new UserContributionBuilder().user(kalo)
-                                                                  .offer(offer8)
+                                                                  .text("You've bought this:"
+                                                                        + offer8.getTitle())
                                                                   .type(ContributionType.PURCHASE)
                                                                   .date(new Date())
                                                                   .build();
             UserContribution kalo2 = new UserContributionBuilder().user(kalo)
-                                                                  .offer(offer9)
+                                                                  .text("You've bought this:"
+                                                                        + offer9.getTitle())
                                                                   .type(ContributionType.PURCHASE)
                                                                   .date(new Date())
                                                                   .build();
             UserContribution kalo3 = new UserContributionBuilder().user(kalo)
-                                                                  .offer(offer10)
+                                                                  .text("You've sold this:"
+                                                                        + offer10.getTitle())
                                                                   .type(ContributionType.SELL)
                                                                   .date(new Date())
                                                                   .build();
 
             UserContribution kalo4 = new UserContributionBuilder().user(kalo)
                                                                   .type(ContributionType.ONE_OFF_DONATION)
-                                                                  .targetCharity(redCross)
-                                                                  .money(100)
+                                                                  .text("You've made a one-off donation towards"
+                                                                        + redCross.getName())
+                                                                  .value(100)
                                                                   .date(new Date())
                                                                   .build();
             UserContribution kalo5 = new UserContributionBuilder().user(kalo)
                                                                   .type(ContributionType.MONTHLY_DONATION)
-                                                                  .targetCharity(redCross)
-                                                                  .money(10)
+                                                                  .text("You've made a monthly donation towards"
+                                                                        + redCross.getName())
+                                                                  .value(10)
                                                                   .date(new Date())
                                                                   .build();
             UserContribution kalo6 = new UserContributionBuilder().user(kalo)
                                                                   .type(ContributionType.EVENT)
-                                                                  .event(event1)
+                                                                  .text("You've participated in this event "
+                                                                        + event1.getTitle()
+                                                                        + " organized by "
+                                                                        + redCross.getName())
+                                                                  .value(30)
                                                                   .date(new Date())
                                                                   .build();
 
@@ -384,20 +404,23 @@ public class DataImportListener
                                                         .awardedBy("Bulgarian Red Cross")
                                                         .description("Thank you badge")
                                                         .text("")
-                                                        .picture("thankYouBadge.jpg").build();
-            
+                                                        .picture("thankYouBadge.jpg")
+                                                        .build();
+
             UserReward reward2 = new UserRewardBuilder().user(kalo)
-                            .awardedBy("Bulgarian Red Cross")
-                            .description("Event invitation - Friends of BRC meetup.")
-                            .text("")
-                            .picture("friendsMeetup.jpg").build();
-            
+                                                        .awardedBy("Bulgarian Red Cross")
+                                                        .description("Event invitation - Friends of BRC meetup.")
+                                                        .text("")
+                                                        .picture("friendsMeetup.png")
+                                                        .build();
+
             UserReward reward3 = new UserRewardBuilder().user(kalo)
-                            .awardedBy("Technopolis")
-                            .description("Digital photo frame")
-                            .text("")
-                            .picture("photoFrame.jpg").build();
-            
+                                                        .awardedBy("Technopolis")
+                                                        .description("Digital photo frame")
+                                                        .text("")
+                                                        .picture("photoFrame.jpg")
+                                                        .build();
+
             rewardRepo.save(reward1);
             rewardRepo.save(reward2);
             rewardRepo.save(reward3);
