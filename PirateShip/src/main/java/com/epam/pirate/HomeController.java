@@ -149,8 +149,7 @@ public class HomeController
     public Offer buyOffer(HttpServletRequest request, @PathVariable Long id)
         throws Exception
     {
-//        User buyer = securityUtils.getLoggedInUser(request);
-        User buyer = userRepository.findOne(1L);
+        User buyer = securityUtils.getLoggedInUser(request);
         com.epam.pirate.model.Offer offer = offerRepository.findOne(id);
         User seller = offer.getUser();
         com.epam.pirate.model.Charity targetCharity = offer.getTargetCharity();
