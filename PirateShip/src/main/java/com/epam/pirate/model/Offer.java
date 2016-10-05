@@ -17,7 +17,7 @@ import net.karneim.pojobuilder.GeneratePojoBuilder;
 
 @Entity
 @Table(name = "Offers")
-@GeneratePojoBuilder(withSetterNamePattern="*")
+@GeneratePojoBuilder(withSetterNamePattern = "*")
 public class Offer
 {
     @Id
@@ -32,15 +32,13 @@ public class Offer
     private String title;
 
     private String category;
-    @Column(length=4096)
+    @Column(length = 4096)
     private String description;
 
     @Lob
     private ArrayList<String> pictures;
 
     private double price;
-    
-    private boolean active;
 
 
     public long getId()
@@ -136,17 +134,5 @@ public class Offer
     public void setPrice(double price)
     {
         this.price = price;
-    }
-
-
-    public boolean isActive()
-    {
-        return active;
-    }
-
-
-    public void setActive(boolean active)
-    {
-        this.active = active;
     }
 }
