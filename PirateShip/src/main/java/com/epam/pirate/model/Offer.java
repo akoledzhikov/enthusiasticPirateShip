@@ -1,7 +1,7 @@
 package com.epam.pirate.model;
 
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,9 +36,11 @@ public class Offer
     private String description;
 
     @Lob
-    private List<String> pictures;
+    private ArrayList<String> pictures;
 
     private double price;
+    
+    private boolean active;
 
 
     public long getId()
@@ -113,13 +115,13 @@ public class Offer
     }
 
 
-    public List<String> getPictures()
+    public ArrayList<String> getPictures()
     {
         return pictures;
     }
 
 
-    public void setPictures(List<String> pictures)
+    public void setPictures(ArrayList<String> pictures)
     {
         this.pictures = pictures;
     }
@@ -134,5 +136,17 @@ public class Offer
     public void setPrice(double price)
     {
         this.price = price;
+    }
+
+
+    public boolean isActive()
+    {
+        return active;
+    }
+
+
+    public void setActive(boolean active)
+    {
+        this.active = active;
     }
 }

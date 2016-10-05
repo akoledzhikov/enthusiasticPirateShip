@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 import net.karneim.pojobuilder.GeneratePojoBuilder;
 
-import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -31,6 +30,8 @@ public class Charity
     private String mail;
 
     private String password;
+    
+    private String name;
 
     @Column(length=4096)
     private String description;
@@ -171,6 +172,18 @@ public class Charity
     public void setPosts(List<CharityPost> posts)
     {
         this.posts = posts;
+    }
+
+
+    public String getName()
+    {
+        return name;
+    }
+
+
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
 }

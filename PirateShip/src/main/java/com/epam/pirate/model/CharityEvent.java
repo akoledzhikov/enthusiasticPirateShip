@@ -1,6 +1,7 @@
 package com.epam.pirate.model;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class CharityEvent
     private List<CharityPost> posts;
 
     @Lob
-    private List<String> pictures;
+    private ArrayList<String> pictures;
 
 
     public long getId()
@@ -147,13 +148,13 @@ public class CharityEvent
     }
 
 
-    public List<String> getPictures()
+    public ArrayList<String> getPictures()
     {
         return pictures;
     }
 
 
-    public void setPictures(List<String> pictures)
+    public void setPictures(ArrayList<String> pictures)
     {
         this.pictures = pictures;
     }
