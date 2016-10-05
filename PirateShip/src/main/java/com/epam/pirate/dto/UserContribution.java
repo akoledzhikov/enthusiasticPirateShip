@@ -3,14 +3,12 @@ package com.epam.pirate.dto;
 
 import java.util.Date;
 
-import com.epam.pirate.model.ContributionType;
-
 
 public class UserContribution
 {
     private long id;
 
-    private ContributionType type;
+    private String picture;
 
     private Date date;
 
@@ -18,14 +16,17 @@ public class UserContribution
 
     private String text;
 
-    public UserContribution(com.epam.pirate.model.UserContribution contribution){
-    	this.id = contribution.getId();
-    	this.type = contribution.getType();
-    	this.date = contribution.getDate();
-    	this.value = contribution.getValue();
-    	this.text = contribution.getText();
+
+    public UserContribution(com.epam.pirate.model.UserContribution contribution)
+    {
+        this.id = contribution.getId();
+        this.picture = contribution.getType().getIconLocation();
+        this.date = contribution.getDate();
+        this.value = contribution.getValue();
+        this.text = contribution.getText();
     }
-    
+
+
     public long getId()
     {
         return id;
@@ -38,15 +39,15 @@ public class UserContribution
     }
 
 
-    public ContributionType getType()
+    public String getPicture()
     {
-        return type;
+        return picture;
     }
 
 
-    public void setType(ContributionType type)
+    public void setPicture(String picture)
     {
-        this.type = type;
+        this.picture = picture;
     }
 
 
