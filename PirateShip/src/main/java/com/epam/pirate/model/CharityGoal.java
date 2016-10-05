@@ -1,6 +1,7 @@
 package com.epam.pirate.model;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class CharityGoal
 
     @ManyToOne(fetch=FetchType.EAGER)
     private Charity charity;
-
+    @Column(length=10000)
     private String description;
 
     private double currentAmountOfMoney;

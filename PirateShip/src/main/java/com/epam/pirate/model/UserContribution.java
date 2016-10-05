@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import net.karneim.pojobuilder.GeneratePojoBuilder;
@@ -19,14 +20,15 @@ public class UserContribution
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne
     private User user;
 
     private ContributionType type;
-
+    @ManyToOne
     private Charity targetCharity;
-
+    @ManyToOne
     private Offer offer;
-
+    @ManyToOne
     private CharityEvent event;
 
     // in case of donations only!

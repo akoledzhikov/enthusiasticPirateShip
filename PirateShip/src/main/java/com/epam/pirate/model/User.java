@@ -3,6 +3,7 @@ package com.epam.pirate.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import net.karneim.pojobuilder.GeneratePojoBuilder;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
 @Entity
@@ -26,21 +30,25 @@ public class User
     private String mail;
 
     private String password;
-
+    @Column(length=512)
     private String address;
 
     private String contactPhone;
 
     @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Charity> favouriteCharities;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="user")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Offer> offers;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="user")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<UserContribution> contributions;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="user")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<UserReward> rewards;
 
 

@@ -3,6 +3,7 @@ package com.epam.pirate.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import net.karneim.pojobuilder.GeneratePojoBuilder;
+
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
 @Entity
@@ -27,6 +32,7 @@ public class Charity
 
     private String password;
 
+    @Column(length=4096)
     private String description;
 
     private String contactPhone;
@@ -36,12 +42,15 @@ public class Charity
     private String linkToOfficialPage;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy="charity")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<CharityEvent> events;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy="charity")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<CharityGoal> goals;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy="charity")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<CharityPost> posts;
 
 

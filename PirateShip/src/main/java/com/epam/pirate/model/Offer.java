@@ -3,10 +3,13 @@ package com.epam.pirate.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import net.karneim.pojobuilder.GeneratePojoBuilder;
@@ -21,16 +24,18 @@ public class Offer
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne
     private User user;
-
+    @ManyToOne
     private Charity targetCharity;
 
     private String title;
 
     private String category;
-
+    @Column(length=4096)
     private String description;
 
+    @Lob
     private List<String> pictures;
 
     private double price;
