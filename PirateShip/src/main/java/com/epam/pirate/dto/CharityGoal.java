@@ -36,13 +36,13 @@ public class CharityGoal
     }
 
 
-    public String getDescription()
+    public String getTitle()
     {
         return description;
     }
 
 
-    public void setDescription(String description)
+    public void setTitle(String description)
     {
         this.description = description;
     }

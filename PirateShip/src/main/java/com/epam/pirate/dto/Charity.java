@@ -29,28 +29,38 @@ public class Charity
 
     private List<CharityPost> posts = new ArrayList<>();
 
-    public Charity(com.epam.pirate.model.Charity charity){
-    	id = charity.getId();
-    	mail = charity.getMail();
-    	name = charity.getName();
-    	description = charity.getDescription();
-    	contactPhone = charity.getContactPhone();
-    	setCategory(charity.getCategory());
-    	linkToOfficialPage = charity.getLinkToOfficialPage();
-    	
-    	for (com.epam.pirate.model.CharityEvent charityEvent : charity.getEvents()) {
-			events.add(new CharityEvent(charityEvent));
-		}
-    	
-    	for (com.epam.pirate.model.CharityGoal charityGoal : charity.getGoals()) {
-			goals.add(new CharityGoal(charityGoal));
-		}
-    	
-    	for (com.epam.pirate.model.CharityPost charityPost : charity.getPosts()) {
-			posts.add(new CharityPost(charityPost));
-		}
-    	
+    private String image;
+
+
+    public Charity(com.epam.pirate.model.Charity charity)
+    {
+        id = charity.getId();
+        mail = charity.getMail();
+        name = charity.getName();
+        description = charity.getDescription();
+        contactPhone = charity.getContactPhone();
+        setCategory(charity.getCategory());
+        linkToOfficialPage = charity.getLinkToOfficialPage();
+
+        for (com.epam.pirate.model.CharityEvent charityEvent : charity.getEvents())
+        {
+            events.add(new CharityEvent(charityEvent));
+        }
+
+        for (com.epam.pirate.model.CharityGoal charityGoal : charity.getGoals())
+        {
+            goals.add(new CharityGoal(charityGoal));
+        }
+
+        for (com.epam.pirate.model.CharityPost charityPost : charity.getPosts())
+        {
+            posts.add(new CharityPost(charityPost));
+        }
+
+        setImage(charity.getProfilePicture());
+
     }
+
 
     public long getId()
     {
@@ -100,13 +110,13 @@ public class Charity
     }
 
 
-    public String getLinkToOfficialPage()
+    public String getHomepage()
     {
         return linkToOfficialPage;
     }
 
 
-    public void setLinkToOfficialPage(String linkToOfficialPage)
+    public void setHomepage(String linkToOfficialPage)
     {
         this.linkToOfficialPage = linkToOfficialPage;
     }
@@ -159,14 +169,28 @@ public class Charity
         this.name = name;
     }
 
+
     public CharityCategory getCategory()
     {
         return category;
     }
 
+
     public void setCategory(CharityCategory category)
     {
         this.category = category;
+    }
+
+
+    public String getImage()
+    {
+        return image;
+    }
+
+
+    public void setImage(String image)
+    {
+        this.image = image;
     }
 
 }

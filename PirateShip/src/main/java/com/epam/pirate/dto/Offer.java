@@ -3,17 +3,6 @@ package com.epam.pirate.dto;
 
 import java.util.ArrayList;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import net.karneim.pojobuilder.GeneratePojoBuilder;
-
 
 public class Offer
 {
@@ -25,6 +14,8 @@ public class Offer
     private String description;
 
     private ArrayList<String> pictures = new ArrayList<>();
+    
+    private String firstImage;
 
     private double price;
     
@@ -35,6 +26,7 @@ public class Offer
     	description = offer.getDescription();
     	pictures = offer.getPictures();
     	price = offer.getPrice();
+    	setFirstImage(pictures.isEmpty() ? null : pictures.get(0));
     }
     
     public long getId()
@@ -105,6 +97,16 @@ public class Offer
     public void setPrice(double price)
     {
         this.price = price;
+    }
+
+    public String getFirstImage()
+    {
+        return firstImage;
+    }
+
+    public void setFirstImage(String firstImage)
+    {
+        this.firstImage = firstImage;
     }
 
 }
