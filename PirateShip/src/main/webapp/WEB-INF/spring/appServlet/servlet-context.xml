@@ -11,7 +11,7 @@
   http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<jpa:repositories base-package="com.epam.pirate.data" />
+	<jpa:repositories base-package="com.epam.pirate.dao" />
 
 	<mvc:annotation-driven />
 	<tx:annotation-driven />
@@ -20,6 +20,7 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.epam.pirate" />
+	<bean id="securityUtils" class="com.epam.pirate.security.SecurityUtils"/>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
