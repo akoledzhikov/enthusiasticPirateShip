@@ -1,5 +1,6 @@
 package com.epam.pirate.dto;
 
+
 public class CharityGoal
 {
     private long id;
@@ -10,13 +11,19 @@ public class CharityGoal
 
     private double targetAmountOfMoney;
 
-    public CharityGoal(com.epam.pirate.model.CharityGoal goal){
-    	id = goal.getId();
-    	description = goal.getDescription();
-    	currentAmountOfMoney = goal.getCurrentAmountOfMoney();
-    	targetAmountOfMoney = goal.getTargetAmountOfMoney();
+    private double percentage;
+
+
+    public CharityGoal(com.epam.pirate.model.CharityGoal goal)
+    {
+        id = goal.getId();
+        description = goal.getDescription();
+        currentAmountOfMoney = goal.getCurrentAmountOfMoney();
+        targetAmountOfMoney = goal.getTargetAmountOfMoney();
+        percentage = currentAmountOfMoney / targetAmountOfMoney;
     }
-    
+
+
     public long getId()
     {
         return id;
@@ -62,5 +69,17 @@ public class CharityGoal
     public void setTargetAmountOfMoney(double targetAmountOfMoney)
     {
         this.targetAmountOfMoney = targetAmountOfMoney;
+    }
+
+
+    public double getPercentage()
+    {
+        return percentage;
+    }
+
+
+    public void setPercentage(double percentage)
+    {
+        this.percentage = percentage;
     }
 }

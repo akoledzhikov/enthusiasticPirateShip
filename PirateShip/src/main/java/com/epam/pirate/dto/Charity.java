@@ -35,7 +35,7 @@ public class Charity
     	name = charity.getName();
     	description = charity.getDescription();
     	contactPhone = charity.getContactPhone();
-    	category = charity.getCategory();
+    	setCategory(charity.getCategory());
     	linkToOfficialPage = charity.getLinkToOfficialPage();
     	
     	for (com.epam.pirate.model.CharityEvent charityEvent : charity.getEvents()) {
@@ -157,6 +157,16 @@ public class Charity
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    public CharityCategory getCategory()
+    {
+        return category;
+    }
+
+    public void setCategory(CharityCategory category)
+    {
+        this.category = category;
     }
 
 }

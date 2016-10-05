@@ -4,7 +4,7 @@ public class UserReward
 {
     private long id;
 
-    private String description;
+    private String title;
     private String text;
 
     private String picture;
@@ -14,7 +14,7 @@ public class UserReward
 
     public UserReward(com.epam.pirate.model.UserReward reward){
     	id = reward.getId();
-    	description = reward.getDescription();
+    	title = reward.getDescription();
     	text = reward.getText();
     	picture = reward.getPicture();
     	awardedBy = reward.getAwardedBy();
@@ -31,15 +31,15 @@ public class UserReward
     }
 
 
-    public String getDescription()
+    public String getTitle()
     {
-        return description;
+        return title;
     }
 
 
-    public void setDescription(String description)
+    public void setTitle(String title)
     {
-        this.description = description;
+        this.title = title;
     }
 
 
@@ -77,5 +77,4 @@ public class UserReward
     {
         this.awardedBy = awardedBy;
     }
-
 }
