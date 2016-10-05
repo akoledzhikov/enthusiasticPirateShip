@@ -1,4 +1,5 @@
+.gitignore
 PirateShip/target/
-PirateShip/.classpath
-PirateShip/.project
-PirateShip/.settings/*
+**/.classpath
+**/.project
+**/.settings
