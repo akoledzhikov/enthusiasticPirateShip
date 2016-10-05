@@ -194,7 +194,6 @@ public class DataImportListener
                                              .targetCharity(redCross)
                                              .user(alex)
                                              .pictures(offer8pics)
-                                             .active(false)
                                              .build();
 
             // kalo benefits from this as a buyer
@@ -207,7 +206,6 @@ public class DataImportListener
                                              .targetCharity(redCross)
                                              .user(alex)
                                              .pictures(offer9pics)
-                                             .active(false)
                                              .build();
 
             // kalo benefits from this as a seller
@@ -219,7 +217,6 @@ public class DataImportListener
                                               .price(20)
                                               .targetCharity(redCross)
                                               .user(kalo)
-                                              .active(false)
                                               .pictures(offer10pics)
                                               .build();
 
