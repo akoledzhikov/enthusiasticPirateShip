@@ -3,6 +3,7 @@ package com.epam.pirate.dataimport;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -63,21 +64,6 @@ public class DataImportListener
     {
         if (!userRepo.findAll().iterator().hasNext())
         {
-            User alex = new UserBuilder().mail("alex@epam.com")
-                                         .address("Sofia, Ilinden")
-                                         .password("123")
-                                         .contactPhone("0885123123")
-                                         .build();
-
-            User kalo = new UserBuilder().mail("kalo@epam.com")
-                                         .address("Sofia, Svoboda")
-                                         .password("123")
-                                         .contactPhone("0885213123")
-                                         .build();
-
-            userRepo.save(alex);
-            userRepo.save(kalo);
-
             Charity redCross = new CharityBuilder().category(CharityCategory.WELFARE)
                                                    .contactPhone("0888123123")
                                                    .description("The Bulgarian Red Cross")
@@ -108,6 +94,25 @@ public class DataImportListener
             charityRepo.save(redCross);
             charityRepo.save(amnestyInternational);
             charityRepo.save(animalRescue);
+
+            User alex = new UserBuilder().mail("alex@epam.com")
+                                         .address("Sofia, Ilinden")
+                                         .password("123")
+                                         .contactPhone("0885123123")
+                                         .build();
+
+            ArrayList<Charity> kalosFavouriteCharities = new ArrayList<>();
+            kalosFavouriteCharities.add(redCross);
+            kalosFavouriteCharities.add(animalRescue);
+            User kalo = new UserBuilder().mail("kalo@epam.com")
+                                         .address("Sofia, Svoboda")
+                                         .password("123")
+                                         .contactPhone("0885213123")
+                                         .favouriteCharities(kalosFavouriteCharities)
+                                         .build();
+
+            userRepo.save(alex);
+            userRepo.save(kalo);
 
             ArrayList<String> offer1pics = new ArrayList<>();
             offer1pics.add("http://localhost:8080/pirate/resources/offer1.jpg");
