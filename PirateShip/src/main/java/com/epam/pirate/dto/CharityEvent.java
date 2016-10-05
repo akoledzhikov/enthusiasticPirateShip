@@ -19,9 +19,9 @@ public class CharityEvent
 
     private String location;
 
-    private List<CharityPost> posts;
+    private List<CharityPost> posts = new ArrayList<>();
 
-    private ArrayList<String> pictures;
+    private ArrayList<String> pictures = new ArrayList<>();
 
     public CharityEvent(com.epam.pirate.model.CharityEvent event){
     	id = event.getId();

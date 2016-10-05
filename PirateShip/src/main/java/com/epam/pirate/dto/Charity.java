@@ -1,6 +1,7 @@
 package com.epam.pirate.dto;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.epam.pirate.model.CharityCategory;
@@ -22,11 +23,11 @@ public class Charity
 
     private String linkToOfficialPage;
 
-    private List<CharityEvent> events;
+    private List<CharityEvent> events = new ArrayList<>();
 
-    private List<CharityGoal> goals;
+    private List<CharityGoal> goals = new ArrayList<>();
 
-    private List<CharityPost> posts;
+    private List<CharityPost> posts = new ArrayList<>();
 
     public Charity(com.epam.pirate.model.Charity charity){
     	id = charity.getId();

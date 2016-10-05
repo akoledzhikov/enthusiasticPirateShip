@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.epam.pirate.dao.CharityEventRepository;
 import com.epam.pirate.dao.CharityRepository;
 import com.epam.pirate.dao.OfferRepository;
 import com.epam.pirate.dao.UserRepository;
 import com.epam.pirate.dto.Charity;
+import com.epam.pirate.dto.CharityEvent;
 import com.epam.pirate.dto.Offer;
 import com.epam.pirate.dto.Profile;
 import com.epam.pirate.model.User;
@@ -45,6 +47,8 @@ public class HomeController {
 	OfferRepository offerRepository;
 	@Autowired
 	CharityRepository charityRepository;
+	@Autowired
+	CharityEventRepository charityEventRepository;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -98,5 +102,14 @@ public class HomeController {
 
 		return new Charity(charityRepository.findOne(id));
 	}
+	
+	// Event/{id}
+	@RequestMapping(value = "/event/{id}", method = RequestMethod.GET)
+	public CharityEvent event(HttpServletRequest request, @PathVariable Long id) throws Exception {
+		User user = securityUtils.getLoggedInUser(request);
+
+		return new CharityEvent(charityEventRepository.findOne(id));
+	}
+	
 
 }

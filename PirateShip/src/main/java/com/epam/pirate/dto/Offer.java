@@ -24,7 +24,7 @@ public class Offer
     private String category;
     private String description;
 
-    private ArrayList<String> pictures;
+    private ArrayList<String> pictures = new ArrayList<>();
 
     private double price;
     
