@@ -49,8 +49,9 @@ public class HomeController {
 		return "Welcome " + currentUser.getMail() + " now is " + formattedDate;
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes="*")
 	@ResponseBody
+	@CrossOrigin
 	public String login(@RequestParam("username") String username, @RequestParam("password") String password) throws Exception{
 		return securityUtils.loginUser(username, password);
 		
