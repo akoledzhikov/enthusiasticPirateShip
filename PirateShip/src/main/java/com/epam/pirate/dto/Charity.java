@@ -74,13 +74,13 @@ public class Charity
     }
 
 
-    public String getMail()
+    public String getContact()
     {
         return mail;
     }
 
 
-    public void setMail(String mail)
+    public void setContact(String mail)
     {
         this.mail = mail;
     }
