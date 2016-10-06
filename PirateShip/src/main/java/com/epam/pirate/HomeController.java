@@ -254,7 +254,7 @@ public class HomeController
         UserReward reward = new UserRewardBuilder().awardedBy("Cupcakes and Marshmellows")
                                                    .user(buyer)
                                                    .description("Free cupcake!")
-                                                   .picture("http://192.168.1.146:8080/pirate/resources/cupcake.png")
+                                                   .picture("http://localhost:8080/pirate/resources/cupcake.png")
                                                    .text("Because you've helped Bulgarian Red Cross to fully fund one of their goals, you get a voucher for a free cupcake!")
                                                    .build();
         rewardRepo.save(reward);
