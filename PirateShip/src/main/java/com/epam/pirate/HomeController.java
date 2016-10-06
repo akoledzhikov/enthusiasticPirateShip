@@ -26,9 +26,11 @@ import com.epam.pirate.dao.OfferRepository;
 import com.epam.pirate.dao.UserContributionRepository;
 import com.epam.pirate.dao.UserRepository;
 import com.epam.pirate.dao.UserRewardRepository;
+import com.epam.pirate.dto.AfterOffer;
 import com.epam.pirate.dto.Charity;
 import com.epam.pirate.dto.CharityEvent;
 import com.epam.pirate.dto.Offer;
+import com.epam.pirate.dto.Offer.TargetCharity;
 import com.epam.pirate.dto.Profile;
 import com.epam.pirate.dto.megajson.MegaJson;
 import com.epam.pirate.model.CharityGoal;
@@ -176,7 +178,7 @@ public class HomeController
 
     // POST /MyOffers/{id}
     @RequestMapping(value = "/MyOffers/{id}", method = RequestMethod.POST)
-    public MegaJson buyOffer(HttpServletRequest request, @PathVariable Long id)
+    public AfterOffer buyOffer(HttpServletRequest request, @PathVariable Long id)
         throws Exception
     {
         User buyer = securityUtils.getLoggedInUser(request);
@@ -257,7 +259,12 @@ public class HomeController
                                                    .build();
         rewardRepo.save(reward);
 
-        return megaJSON(request);
+        MegaJson newState =  megaJSON(request);
+        AfterOffer result = new AfterOffer();
+        result.setNewState(newState);
+        result.setCharity(new TargetCharity(targetCharity));
+        result.setText("Thank you for being such a nice guy/gal!");
+        return result;
     }
 
 
