@@ -1,7 +1,6 @@
 package com.epam.pirate.dto;
 
 
-import java.util.Date;
 
 
 public class CharityPost
@@ -11,13 +10,13 @@ public class CharityPost
     private String title;
     private String text;
 
-    private Date datePosted;
+    private String datePosted;
 
     public CharityPost(com.epam.pirate.model.CharityPost post){
     	id = post.getId();
     	title = post.getTitle();
     	text = post.getText();
-    	datePosted = post.getDatePosted();
+    	datePosted = DTOUtil.dateToPrettyString(post.getDatePosted());
     }
     
     public long getId()
@@ -56,13 +55,13 @@ public class CharityPost
     }
 
 
-    public Date getDate()
+    public String getDate()
     {
         return datePosted;
     }
 
 
-    public void setDate(Date datePosted)
+    public void setDate(String datePosted)
     {
         this.datePosted = datePosted;
     }

@@ -2,7 +2,6 @@ package com.epam.pirate.dto;
 
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -13,9 +12,9 @@ public class CharityEvent
     private String title;
     private String description;
 
-    private Date startTime;
+    private String startTime;
 
-    private Date endTime;
+    private String endTime;
 
     private String location;
 
@@ -31,8 +30,8 @@ public class CharityEvent
         id = event.getId();
         title = event.getTitle();
         description = event.getDescription();
-        startTime = event.getStartTime();
-        endTime = event.getEndTime();
+        startTime = DTOUtil.dateToPrettyString(event.getStartTime());
+        endTime = DTOUtil.dateToPrettyString(event.getEndTime());
         location = event.getLocation();
         pictures = event.getPictures();
         owner = event.getCharity().getId();
@@ -80,25 +79,25 @@ public class CharityEvent
     }
 
 
-    public Date getStartTime()
+    public String getStartTime()
     {
         return startTime;
     }
 
 
-    public void setStartTime(Date startTime)
+    public void setStartTime(String startTime)
     {
         this.startTime = startTime;
     }
 
 
-    public Date getEndTime()
+    public String getEndTime()
     {
         return endTime;
     }
 
 
-    public void setEndTime(Date endTime)
+    public void setEndTime(String endTime)
     {
         this.endTime = endTime;
     }

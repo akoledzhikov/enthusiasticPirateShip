@@ -1,7 +1,6 @@
 package com.epam.pirate.dto;
 
 
-import java.util.Date;
 
 
 public class UserContribution
@@ -10,7 +9,7 @@ public class UserContribution
 
     private String image;
 
-    private Date date;
+    private String date;
 
     private double value;
 
@@ -21,7 +20,7 @@ public class UserContribution
     {
         this.id = contribution.getId();
         this.image = contribution.getType().getIconLocation();
-        this.date = contribution.getDate();
+        this.date = DTOUtil.dateToPrettyString(contribution.getDate());
         this.value = contribution.getValue();
         this.description = contribution.getText();
     }
@@ -75,13 +74,13 @@ public class UserContribution
     }
 
 
-    public Date getDate()
+    public String getDate()
     {
         return date;
     }
 
 
-    public void setDate(Date date)
+    public void setDate(String date)
     {
         this.date = date;
     }
