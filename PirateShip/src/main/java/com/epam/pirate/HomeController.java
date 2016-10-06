@@ -93,10 +93,35 @@ public class HomeController
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = "application/json")
-    public String login(@RequestBody UserCredentials credentials)
+    public MegaJson login(@RequestBody UserCredentials credentials)
         throws Exception
     {
-        return "{\"token\":\"" + securityUtils.loginUser(credentials.username, credentials.password) + "\"}";
+        String token =  securityUtils.loginUser(credentials.username, credentials.password);
+        MegaJson result = new MegaJson();
+        result.setToken(token);
+        result.setMyInfo(new Profile(userRepository.findByMailAndPassword(credentials.username, credentials.password)));
+
+        List<Offer> offers = new ArrayList<Offer>();
+        offerRepository.findAll().forEach(offer -> {
+            offers.add(new Offer(offer));
+        });
+
+        result.setOffers(offers);
+
+        List<Charity> charities = new ArrayList<Charity>();
+        charityRepository.findAll().forEach(charity -> {
+            charities.add(new Charity(charity));
+        });
+
+        result.setCharities(charities);
+        
+        List<CharityEvent> events = new ArrayList<CharityEvent>();
+        charityEventRepository.findAll().forEach(event -> {
+            events.add(new CharityEvent(event));
+        });
+
+        result.setEvents(events);
+        return result;
 
     }
 
@@ -151,7 +176,7 @@ public class HomeController
 
     // POST /MyOffers/{id}
     @RequestMapping(value = "/MyOffers/{id}", method = RequestMethod.POST)
-    public Offer buyOffer(HttpServletRequest request, @PathVariable Long id)
+    public MegaJson buyOffer(HttpServletRequest request, @PathVariable Long id)
         throws Exception
     {
         User buyer = securityUtils.getLoggedInUser(request);
@@ -227,21 +252,23 @@ public class HomeController
         UserReward reward = new UserRewardBuilder().awardedBy("Cupcakes and Marshmellows")
                                                    .user(buyer)
                                                    .description("Free cupcake!")
-                                                   .picture("http://localhost:8080/pirate/resources/cupcake.png")
+                                                   .picture("http://192.168.1.146:8080/pirate/resources/cupcake.png")
                                                    .text("Because you've helped Bulgarian Red Cross to fully fund one of their goals, you get a voucher for a free cupcake!")
                                                    .build();
         rewardRepo.save(reward);
 
-        return new Offer(offer);
+        return megaJSON(request);
     }
 
 
     @RequestMapping(value = "/megaJSON", method = RequestMethod.GET)
-    public MegaJson event(HttpServletRequest request)
+    public MegaJson megaJSON(HttpServletRequest request)
         throws Exception
     {
         User user = securityUtils.getLoggedInUser(request);
+        final String token = request.getHeader("token");
         MegaJson result = new MegaJson();
+        result.setToken(token);
         result.setMyInfo(new Profile(user));
 
         List<Offer> offers = new ArrayList<Offer>();

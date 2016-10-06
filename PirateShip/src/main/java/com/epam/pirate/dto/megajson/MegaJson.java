@@ -18,6 +18,8 @@ public class MegaJson
     private List<Offer> offers;
 
     private List<CharityEvent> events;
+    
+    private String token;
 
 
     public Profile getMyInfo()
@@ -65,6 +67,18 @@ public class MegaJson
     public void setEvents(List<CharityEvent> events)
     {
         this.events = events;
+    }
+
+
+    public String getToken()
+    {
+        return token;
+    }
+
+
+    public void setToken(String token)
+    {
+        this.token = token;
     }
 
 }
