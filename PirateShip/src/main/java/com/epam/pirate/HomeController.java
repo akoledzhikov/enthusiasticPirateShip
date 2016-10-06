@@ -30,6 +30,7 @@ import com.epam.pirate.dto.Charity;
 import com.epam.pirate.dto.CharityEvent;
 import com.epam.pirate.dto.Offer;
 import com.epam.pirate.dto.Profile;
+import com.epam.pirate.dto.megajson.MegaJson;
 import com.epam.pirate.model.CharityGoal;
 import com.epam.pirate.model.ContributionType;
 import com.epam.pirate.model.User;
@@ -232,5 +233,37 @@ public class HomeController
         rewardRepo.save(reward);
 
         return new Offer(offer);
+    }
+
+
+    @RequestMapping(value = "/megaJSON", method = RequestMethod.GET)
+    public MegaJson event(HttpServletRequest request)
+        throws Exception
+    {
+        User user = securityUtils.getLoggedInUser(request);
+        MegaJson result = new MegaJson();
+        result.setMyInfo(new Profile(user));
+
+        List<Offer> offers = new ArrayList<Offer>();
+        offerRepository.findAll().forEach(offer -> {
+            offers.add(new Offer(offer));
+        });
+
+        result.setOffers(offers);
+
+        List<Charity> charities = new ArrayList<Charity>();
+        charityRepository.findAll().forEach(charity -> {
+            charities.add(new Charity(charity));
+        });
+
+        result.setCharities(charities);
+        
+        List<CharityEvent> events = new ArrayList<CharityEvent>();
+        charityEventRepository.findAll().forEach(event -> {
+            events.add(new CharityEvent(event));
+        });
+
+        result.setEvents(events);
+        return result;
     }
 }
