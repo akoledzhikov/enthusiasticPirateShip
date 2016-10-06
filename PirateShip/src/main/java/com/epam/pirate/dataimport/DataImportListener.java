@@ -296,10 +296,24 @@ public class DataImportListener
                                                         .currentAmountOfMoney(800)
                                                         .targetAmountOfMoney(15000)
                                                         .build();
+            
+            CharityGoal goal4 = new CharityGoalBuilder().charity(amnestyInternational)
+                            .description("DummyGoal")
+                            .currentAmountOfMoney(800)
+                            .targetAmountOfMoney(15000)
+                            .build();
+            
+            CharityGoal goal5 = new CharityGoalBuilder().charity(animalRescue)
+                            .description("DummyGoal")
+                            .currentAmountOfMoney(800)
+                            .targetAmountOfMoney(15000)
+                            .build();
 
             goalRepo.save(goal2);
             goalRepo.save(goal1);
             goalRepo.save(goal3);
+            goalRepo.save(goal4);
+            goalRepo.save(goal5);
 
             CharityPost post1 = new CharityPostBuilder().charity(redCross)
                                                         .title("Hello Everyone!")

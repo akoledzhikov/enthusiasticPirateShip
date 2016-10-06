@@ -263,7 +263,7 @@ public class HomeController
         AfterOffer result = new AfterOffer();
         result.setNewState(newState);
         result.setCharity(new TargetCharity(targetCharity));
-        result.setText("Thank you for being such a nice guy/gal!");
+        result.setText("Thank you for supporting " + targetCharity.getName() + "! You can click on their logo above to see how they are going to put the money into good use :)");
         return result;
     }
 
